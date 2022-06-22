@@ -14,4 +14,7 @@ import org.aeonbits.owner.Config;
 public interface Mock extends Config {
     @Key("base.url.server")
     String baseUrlServer();
+
+    @Key("endpoint.expect")
+    String endpointExpect();
 }
