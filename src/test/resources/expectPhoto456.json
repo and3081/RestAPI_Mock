@@ -1,0 +1,21 @@
+{
+  "httpRequest": {
+    "path": "/api/photos/cats/123/photos"
+  },
+  "httpResponse": {
+    "statusCode": 200,
+    "headers": {
+      "content-type": [
+        "application/json"
+      ]
+    },
+    "body": {
+      "images": [
+        "test.jpg"
+      ]
+    }
+  },
+  "timeToLive": {
+    "unlimited": true
+  }
+}
