@@ -11,7 +11,6 @@ public class Steps {
     @Step("")
     public static void initMock() {
         given()
-                //.log().all()
                 .spec(requestSpec())
                 .body(Expectations.EXPECT_1)
                 .when()

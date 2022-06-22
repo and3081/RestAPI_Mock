@@ -27,14 +27,9 @@ public class Specification {
     public static ResponseSpecification responseSpecOk() {
         return new ResponseSpecBuilder()
                 .expectStatusCode(200)
-//                .expectBody("page", notNullValue())
-//                .expectBody("page", equalTo(numberPage))
-//                .expectBody("data", notNullValue())
-//                .expectBody("data", not(emptyArray()))
-//                .expectBody("data.id", not(hasItem(nullValue())))
-//                .expectBody("data.avatar", not(hasItem(nullValue())))
                 .build();
     }
+
     public static ResponseSpecification responseSpecCreate() {
         return new ResponseSpecBuilder()
                 .expectStatusCode(201)

@@ -15,6 +15,9 @@ public interface Mock extends Config {
     @Key("base.url.server")
     String baseUrlServer();
 
+    @Key("endpoint.reset")
+    String endpointReset();
+
     @Key("endpoint.expect")
     String endpointExpect();
 }
