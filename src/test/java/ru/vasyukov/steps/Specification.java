@@ -35,4 +35,22 @@ public class Specification {
                 .expectStatusCode(201)
                 .build();
     }
+
+    public static ResponseSpecification responseSpecPhoto123(int statusCode, int length, String itemName) {
+        return new ResponseSpecBuilder()
+                .expectStatusCode(statusCode)
+                .expectBody("images", notNullValue())
+                .expectBody("images", not(emptyArray()))
+                .expectBody("images", not(hasItem(nullValue())))
+                .expectBody("images.size()", is(length))
+                .expectBody("images", hasItem(itemName))
+                .build();
+    }
+
+    public static ResponseSpecification responseSpecPhoto456(int statusCode, String statusLine) {
+        return new ResponseSpecBuilder()
+                .expectStatusCode(statusCode)
+                .expectStatusLine(statusLine)
+                .build();
+    }
 }
