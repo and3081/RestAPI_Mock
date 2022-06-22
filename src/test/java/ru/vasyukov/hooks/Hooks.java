@@ -1,6 +1,7 @@
 package ru.vasyukov.hooks;
 
 import io.qameta.allure.Step;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import ru.vasyukov.properties.TestData;
 
@@ -15,8 +16,8 @@ public class Hooks {
      * Reset MockServer
      */
     @Step("Reset MockServer")
-    @BeforeEach
-    public void resetMock() {
+    @BeforeAll
+    public static void resetMock() {
         given()
                 .spec(requestSpec())
                 .when()

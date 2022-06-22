@@ -1,6 +1,8 @@
 {
+  "priority": 1,
   "httpRequest": {
-    "path": "/api/photos/cats/123/photos"
+    "path": "/api/photos/cats/123/photos",
+    "method" : "GET"
   },
   "httpResponse": {
     "statusCode": 200,
