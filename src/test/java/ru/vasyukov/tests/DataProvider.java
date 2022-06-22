@@ -25,6 +25,6 @@ public class DataProvider {
     protected static Stream<Arguments> providerPhoto456() {
         return Stream.of(arguments("src/test/resources/expectPhoto456.json",
                 "/api/photos/cats/456/photos",
-                400, "HTTP/1.1 400 Wrong request"));
+                400, "Wrong request"));
     }
 }

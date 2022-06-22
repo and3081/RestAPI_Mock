@@ -50,7 +50,7 @@ public class Specification {
     public static ResponseSpecification responseSpecPhoto456(int statusCode, String statusLine) {
         return new ResponseSpecBuilder()
                 .expectStatusCode(statusCode)
-                .expectStatusLine(statusLine)
+                .expectStatusLine(containsString(statusLine))
                 .build();
     }
 }
