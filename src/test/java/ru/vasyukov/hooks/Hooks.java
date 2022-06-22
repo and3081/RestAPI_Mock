@@ -2,7 +2,6 @@ package ru.vasyukov.hooks;
 
 import io.qameta.allure.Step;
 import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
 import ru.vasyukov.properties.TestData;
 
 import static io.restassured.RestAssured.given;
