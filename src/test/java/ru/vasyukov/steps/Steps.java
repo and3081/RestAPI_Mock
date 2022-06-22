@@ -5,20 +5,20 @@ import ru.vasyukov.data.Expectations;
 import ru.vasyukov.properties.TestData;
 
 import static io.restassured.RestAssured.given;
-import static ru.vasyukov.steps.Specification.requestSpec;
-import static ru.vasyukov.steps.Specification.responseSpec;
+import static ru.vasyukov.steps.Specification.*;
 
 public class Steps {
     @Step("")
     public static void initMock() {
         given()
+                //.log().all()
                 .spec(requestSpec())
                 .body(Expectations.EXPECT_1)
                 .when()
-                .get(TestData.mock.endpointExpect())
+                .put(TestData.mock.endpointExpect())
                 .then()
-                .log().body()
-                .spec(responseSpec());
+                .log().all()
+                .spec(responseSpecCreate());
 //                .extract().body().as(Resource.class)
 //                .getData();
     }

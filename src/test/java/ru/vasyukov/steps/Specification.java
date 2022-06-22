@@ -20,11 +20,11 @@ public class Specification {
     public static RequestSpecification requestSpec() {
         return new RequestSpecBuilder()
                 .setBaseUri(TestData.mock.baseUrlServer())
-                .setContentType("application/json;charset=UTF-8")
+                .setContentType("application/json; charset=UTF-8")
                 .build();
     }
 
-    public static ResponseSpecification responseSpec() {
+    public static ResponseSpecification responseSpecOk() {
         return new ResponseSpecBuilder()
                 .expectStatusCode(200)
 //                .expectBody("page", notNullValue())
@@ -33,6 +33,11 @@ public class Specification {
 //                .expectBody("data", not(emptyArray()))
 //                .expectBody("data.id", not(hasItem(nullValue())))
 //                .expectBody("data.avatar", not(hasItem(nullValue())))
+                .build();
+    }
+    public static ResponseSpecification responseSpecCreate() {
+        return new ResponseSpecBuilder()
+                .expectStatusCode(201)
                 .build();
     }
 }
