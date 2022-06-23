@@ -17,14 +17,13 @@ public class DataProvider {
 
      */
     protected static Stream<Arguments> providerPhoto123() {
-        return Stream.of(arguments("src/test/resources/expectPhoto123.json",
+        return Stream.of(arguments("src/test/resources/expectBodyPhoto123.json",
                 "/api/photos/cats/123/photos",
                 200, 1, "test.jpg"));
     }
 
     protected static Stream<Arguments> providerPhoto456() {
-        return Stream.of(arguments("src/test/resources/expectPhoto456.json",
-                "/api/photos/cats/456/photos",
+        return Stream.of(arguments("/api/photos/cats/456/photos",
                 400, "Wrong request"));
     }
 }

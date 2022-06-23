@@ -18,7 +18,7 @@ public class Hooks {
 
     @BeforeAll
     public static void startMockServer() {
-        mockServer = startClientAndServer(Integer.parseInt(TestData.mock.basePortServer()));
+        mockServer = startClientAndServer(Integer.parseInt(TestData.mock.portServer()));
         Assertions.assertTrue(mockServer.hasStarted() && mockServer.isRunning(),
                 "Ошибка запуска MockServer");
         ConfigurationProperties.logLevel(TestData.mock.loggingServer());

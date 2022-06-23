@@ -19,20 +19,8 @@ public class Specification {
      */
     public static RequestSpecification requestSpec() {
         return new RequestSpecBuilder()
-                .setBaseUri(TestData.mock.baseUrlServer()+":"+TestData.mock.basePortServer())
+                .setBaseUri(TestData.mock.urlServer()+":"+TestData.mock.portServer())
                 .setContentType("application/json; charset=UTF-8")
-                .build();
-    }
-
-    public static ResponseSpecification responseSpecOk() {
-        return new ResponseSpecBuilder()
-                .expectStatusCode(200)
-                .build();
-    }
-
-    public static ResponseSpecification responseSpecCreate() {
-        return new ResponseSpecBuilder()
-                .expectStatusCode(201)
                 .build();
     }
 

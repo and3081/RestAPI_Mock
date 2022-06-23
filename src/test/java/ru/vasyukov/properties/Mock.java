@@ -12,18 +12,15 @@ import org.aeonbits.owner.Config;
         "file:mock.properties"
 })
 public interface Mock extends Config {
-    @Key("base.url.server")
-    String baseUrlServer();
+    @Key("url.server")
+    String urlServer();
 
-    @Key("base.port.server")
-    String basePortServer();
+    @Key("ip.server")
+    String ipServer();
+
+    @Key("port.server")
+    String portServer();
 
     @Key("logging.server")
     String loggingServer();
-
-    @Key("endpoint.reset")
-    String endpointReset();
-
-    @Key("endpoint.expect")
-    String endpointExpect();
 }
