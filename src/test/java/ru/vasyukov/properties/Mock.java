@@ -18,6 +18,9 @@ public interface Mock extends Config {
     @Key("base.port.server")
     String basePortServer();
 
+    @Key("logging.server")
+    String loggingServer();
+
     @Key("endpoint.reset")
     String endpointReset();
 

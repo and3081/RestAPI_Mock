@@ -3,6 +3,8 @@ package ru.vasyukov.hooks;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
+import org.mockserver.configuration.ConfigurationProperties;
 import org.mockserver.integration.ClientAndServer;
 import ru.vasyukov.properties.TestData;
 
@@ -17,7 +19,14 @@ public class Hooks {
     @BeforeAll
     public static void startMockServer() {
         mockServer = startClientAndServer(Integer.parseInt(TestData.mock.basePortServer()));
-        Assertions.assertNotNull(mockServer, "Ошибка start MockServer");
+        Assertions.assertTrue(mockServer.hasStarted() && mockServer.isRunning(),
+                "Ошибка запуска MockServer");
+        ConfigurationProperties.logLevel(TestData.mock.loggingServer());
+    }
+
+    @BeforeEach
+    public void resetMockServer() {
+        mockServer.reset();
     }
 
     @AfterAll
@@ -27,20 +36,4 @@ public class Hooks {
             mockServer = null;
         }
     }
-
-//    @Step("Reset MockServer")
-//    @BeforeAll
-//    public static void resetMock() {
-//        try {
-//            given()
-//                    .spec(requestSpec())
-//                    .when()
-//                    .put(TestData.mock.endpointReset())
-//                    .then()
-//                    //.log().all()
-//                    .spec(responseSpecOk());
-//        } catch (Exception e) {
-//            Assertions.fail("Ошибка соединения с MockServer\n" + e);
-//        }
-//    }
 }

@@ -28,7 +28,7 @@ public class Steps {
                 .when()
                 .get(request)
                 .then()
-                //.log().all()
+                .log().all()
                 .spec(response);
     }
 }
