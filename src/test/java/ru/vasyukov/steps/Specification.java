@@ -43,4 +43,10 @@ public class Specification {
                 .expectStatusLine(containsString(statusLine))
                 .build();
     }
+
+    public static ResponseSpecification responseSpecPhoto(int statusCode) {
+        return new ResponseSpecBuilder()
+                .expectStatusCode(statusCode)
+                .build();
+    }
 }

@@ -14,14 +14,15 @@ public class Tests extends Hooks {
     public void testPhoto123(String filename, String endpoint,
                              int statusCode, int length, String itemName) {
         Steps.initMockPhoto123(filename, endpoint, statusCode);
-        Steps.requestMock(endpoint, Specification.responseSpecPhoto123(statusCode, length, itemName));
+//        Steps.requestMock(endpoint, Specification.responseSpecPhoto123(statusCode, length, itemName));
+        Steps.requestMock("/api/core/cats/get-by-id?id=1", Specification.responseSpecPhoto(statusCode));
     }
 
-    @DisplayName("Тестирование Photo456 status 400")
-    @ParameterizedTest(name = "{arguments}")
-    @MethodSource("ru.vasyukov.tests.DataProvider#providerPhoto456")
-    public void testPhoto456(String endpoint, int statusCode, String statusLine) {
-        Steps.initMockPhoto456(endpoint, statusCode, statusLine);
-        Steps.requestMock(endpoint, Specification.responseSpecPhoto456(statusCode, statusLine));
-    }
+//    @DisplayName("Тестирование Photo456 status 400")
+//    @ParameterizedTest(name = "{arguments}")
+//    @MethodSource("ru.vasyukov.tests.DataProvider#providerPhoto456")
+//    public void testPhoto456(String endpoint, int statusCode, String statusLine) {
+//        Steps.initMockPhoto456(endpoint, statusCode, statusLine);
+//        Steps.requestMock(endpoint, Specification.responseSpecPhoto456(statusCode, statusLine));
+//    }
 }
