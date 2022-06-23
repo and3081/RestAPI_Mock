@@ -7,6 +7,7 @@ import io.restassured.specification.ResponseSpecification;
 import ru.vasyukov.properties.TestData;
 
 import static org.hamcrest.Matchers.*;
+import static ru.vasyukov.steps.MyListener.myListener;
 
 /**
  * Класс спецификаций для запросов и ответов
@@ -21,6 +22,7 @@ public class Specification {
         return new RequestSpecBuilder()
                 .setBaseUri(TestData.mock.urlServer()+":"+TestData.mock.portServer())
                 .setContentType("application/json; charset=UTF-8")
+                .addFilter(myListener())
                 .build();
     }
 
