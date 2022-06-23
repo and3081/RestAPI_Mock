@@ -19,7 +19,7 @@ public class Specification {
      */
     public static RequestSpecification requestSpec() {
         return new RequestSpecBuilder()
-                .setBaseUri(TestData.mock.baseUrlServer())
+                .setBaseUri(TestData.mock.baseUrlServer()+":"+TestData.mock.basePortServer())
                 .setContentType("application/json; charset=UTF-8")
                 .build();
     }
