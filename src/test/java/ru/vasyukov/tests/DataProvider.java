@@ -12,9 +12,8 @@ import static org.junit.jupiter.params.provider.Arguments.arguments;
 @SuppressWarnings("unused")
 public class DataProvider {
     /**
-     * Метод-провайдер для тест-кейса testDb()
+     * Метод-провайдер для тест-кейса testPhoto123()
      * @return  стрим аргументов:
-
      */
     protected static Stream<Arguments> providerPhoto123() {
         return Stream.of(arguments("src/test/resources/expectBodyPhoto123.json",
