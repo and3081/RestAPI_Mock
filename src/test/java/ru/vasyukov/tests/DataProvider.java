@@ -28,6 +28,6 @@ public class DataProvider {
 
     protected static Stream<Arguments> providerIdParams() {
         return Stream.of(arguments("/api/core/cats/get-by-id",
-                "123", "456", 200, 201));
+                "123", 200, "456", 201, "9999", 400));
     }
 }

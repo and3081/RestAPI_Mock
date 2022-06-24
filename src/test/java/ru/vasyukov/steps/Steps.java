@@ -70,7 +70,8 @@ public class Steps {
     }
 
     @Step("Init Mock IdParams: {statusCode1}, {statusCode2}")
-    public static void initMockIdParams(String endpoint, int statusCode1, int statusCode2) {
+    public static void initMockIdParams(String endpoint, String id1, String id2,
+                                        int statusCode1, int statusCode2, int statusCode3) {
         new MockServerClient(TestData.mock.ipServer(),
                 Integer.parseInt(TestData.mock.portServer()))
                 .when(request()
@@ -82,24 +83,22 @@ public class Steps {
                         TimeToLive.unlimited(),
                         1)
                 .respond(template(HttpTemplate.TemplateType.VELOCITY,
-                        "#if($request.queryStringParameters['id'][0] == '123')\n" +
+                        "#if($request.queryStringParameters['id'][0] == " + id1 + ")\n" +
                                 "    {\n" +
                                 "        'statusCode': " + statusCode1 + ",\n" +
-                                "        'body': \"{'ID': $request.queryStringParameters['id'][0]}\"\n" +
+                                "        'body': {'ID': '$request.queryStringParameters['id'][0]'}\n" +
+                                "    }\n" +
+                                "#elseif($request.queryStringParameters['id'][0] == " + id2 + ")\n" +
+                                "    {\n" +
+                                "        'statusCode': " + statusCode2 + ",\n" +
+                                "        'body': {'ID': '$request.queryStringParameters['id'][0]'}\n" +
                                 "    }\n" +
                                 "#else\n" +
                                 "    {\n" +
-                                "        'statusCode': " + statusCode2 + ",\n" +
-                                "        'body': \"$!request.queryStringParameters['id'][0]\"\n" +
+                                "        'statusCode': " + statusCode3 + ",\n" +
+                                "        'body': {'WrongID': '$request.queryStringParameters['id'][0]'}\n" +
                                 "    }\n" +
                                 "#end"));
-
-//                        response()
-//                        .withStatusCode(statusCode)
-//                        .withHeader("Content-Type", "application/json")
-//                        .withBody(
-//                                "#if($request.method == 'GET') { --- }" +
-//                                        "#else { === }"));
     }
 
     @Attachment(value = "body '{filename}'", type = "application/json")

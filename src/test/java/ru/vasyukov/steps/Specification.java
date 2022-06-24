@@ -44,9 +44,19 @@ public class Specification {
                 .build();
     }
 
-    public static ResponseSpecification responseSpecPhoto(int statusCode) {
+    public static ResponseSpecification responseSpecIdParams(int statusCode, String id) {
         return new ResponseSpecBuilder()
                 .expectStatusCode(statusCode)
+                .expectBody("ID", notNullValue())
+                .expectBody("ID", is(id))
+                .build();
+    }
+
+    public static ResponseSpecification responseSpecIdParamsWrong(int statusCode, String id) {
+        return new ResponseSpecBuilder()
+                .expectStatusCode(statusCode)
+                .expectBody("WrongID", notNullValue())
+                .expectBody("WrongID", is(id))
                 .build();
     }
 }

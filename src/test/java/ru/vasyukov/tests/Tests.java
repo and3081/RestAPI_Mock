@@ -25,12 +25,16 @@ public class Tests extends Hooks {
 //        Steps.requestMock(endpoint, Specification.responseSpecPhoto456(statusCode, statusLine));
 //    }
 
-    @DisplayName("Тестирование IdParams status 200")
+    @DisplayName("Тестирование IdParams '123','456' status 200, 201")
     @ParameterizedTest(name = "{arguments}")
     @MethodSource("ru.vasyukov.tests.DataProvider#providerIdParams")
-    public void testIdParams(String endpoint, String id1, String id2, int statusCode1, int statusCode2) {
-        Steps.initMockIdParams(endpoint, statusCode1, statusCode2);
-        Steps.requestMock(endpoint + "?id=" + id1, Specification.responseSpecPhoto(statusCode1));
-        Steps.requestMock(endpoint + "?id=" + id2, Specification.responseSpecPhoto(statusCode2));
+    public void testIdParams(String endpoint,
+                             String id1, int statusCode1,
+                             String id2, int statusCode2,
+                             String id3, int statusCode3) {
+        Steps.initMockIdParams(endpoint, id1, id2, statusCode1, statusCode2, statusCode3);
+        Steps.requestMock(endpoint + "?id=" + id1, Specification.responseSpecIdParams(statusCode1, id1));
+        Steps.requestMock(endpoint + "?id=" + id2, Specification.responseSpecIdParams(statusCode2, id2));
+        Steps.requestMock(endpoint + "?id=" + id3, Specification.responseSpecIdParamsWrong(statusCode3, id3));
     }
 }
