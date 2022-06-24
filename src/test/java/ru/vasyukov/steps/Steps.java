@@ -42,10 +42,23 @@ public class Steps {
                                 MediaType.APPLICATION_JSON_UTF_8)));
     }
 
-    @Step("Request Mock {request}")
+    @Step("Request Mock '{request}'")
     public static void requestMock(String request, ResponseSpecification checkResponse) {
         given()
                 .spec(requestSpec())
+                .when()
+                .get(request)
+                .then()
+                .log().all()
+                .spec(checkResponse);
+    }
+
+    @Step("Request Mock '{request}'  Params '{id}'")
+    public static void requestMockParams(String request, String id, ResponseSpecification checkResponse) {
+        given()
+                .spec(requestSpec())
+                .param("id", id)
+                //.log().all()
                 .when()
                 .get(request)
                 .then()

@@ -8,22 +8,22 @@ import ru.vasyukov.steps.Specification;
 import ru.vasyukov.steps.Steps;
 
 public class Tests extends Hooks {
-//    @DisplayName("Тестирование Photo123 status 200")
-//    @ParameterizedTest(name = "{arguments}")
-//    @MethodSource("ru.vasyukov.tests.DataProvider#providerPhoto123")
-//    public void testPhoto123(String filename, String endpoint,
-//                             int statusCode, int length, String itemName) {
-//        Steps.initMockPhoto123(filename, endpoint, statusCode);
-//        Steps.requestMock(endpoint, Specification.responseSpecPhoto123(statusCode, length, itemName));
-//    }
+    @DisplayName("Тестирование Photo123 status 200")
+    @ParameterizedTest(name = "{arguments}")
+    @MethodSource("ru.vasyukov.tests.DataProvider#providerPhoto123")
+    public void testPhoto123(String filename, String endpoint,
+                             int statusCode, int length, String itemName) {
+        Steps.initMockPhoto123(filename, endpoint, statusCode);
+        Steps.requestMock(endpoint, Specification.responseSpecPhoto123(statusCode, length, itemName));
+    }
 
-//    @DisplayName("Тестирование Photo456 status 400")
-//    @ParameterizedTest(name = "{arguments}")
-//    @MethodSource("ru.vasyukov.tests.DataProvider#providerPhoto456")
-//    public void testPhoto456(String endpoint, int statusCode, String statusLine) {
-//        Steps.initMockPhoto456(endpoint, statusCode, statusLine);
-//        Steps.requestMock(endpoint, Specification.responseSpecPhoto456(statusCode, statusLine));
-//    }
+    @DisplayName("Тестирование Photo456 status 400")
+    @ParameterizedTest(name = "{arguments}")
+    @MethodSource("ru.vasyukov.tests.DataProvider#providerPhoto456")
+    public void testPhoto456(String endpoint, int statusCode, String statusLine) {
+        Steps.initMockPhoto456(endpoint, statusCode, statusLine);
+        Steps.requestMock(endpoint, Specification.responseSpecPhoto456(statusCode, statusLine));
+    }
 
     @DisplayName("Тестирование IdParams '123','456' status 200, 201")
     @ParameterizedTest(name = "{arguments}")
@@ -33,8 +33,8 @@ public class Tests extends Hooks {
                              String id2, int statusCode2,
                              String id3, int statusCode3) {
         Steps.initMockIdParams(endpoint, id1, id2, statusCode1, statusCode2, statusCode3);
-        Steps.requestMock(endpoint + "?id=" + id1, Specification.responseSpecIdParams(statusCode1, id1));
-        Steps.requestMock(endpoint + "?id=" + id2, Specification.responseSpecIdParams(statusCode2, id2));
-        Steps.requestMock(endpoint + "?id=" + id3, Specification.responseSpecIdParamsWrong(statusCode3, id3));
+        Steps.requestMockParams(endpoint, id1, Specification.responseSpecIdParams(statusCode1, id1));
+        Steps.requestMockParams(endpoint, id2, Specification.responseSpecIdParams(statusCode2, id2));
+        Steps.requestMockParams(endpoint, id3, Specification.responseSpecIdParamsWrong(statusCode3, id3));
     }
 }
