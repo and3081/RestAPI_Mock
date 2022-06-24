@@ -16,6 +16,9 @@ import static org.mockserver.integration.ClientAndServer.startClientAndServer;
 public class Hooks {
     protected static ClientAndServer mockServer;
 
+    /**
+     * Старт MockServer
+     */
     @BeforeAll
     public static void startMockServer() {
         mockServer = startClientAndServer(Integer.parseInt(TestData.mock.portServer()));
@@ -24,11 +27,17 @@ public class Hooks {
         ConfigurationProperties.logLevel(TestData.mock.loggingServer());
     }
 
+    /**
+     * Reset MockServer перед каждым тестом
+     */
     @BeforeEach
     public void resetMockServer() {
         mockServer.reset();
     }
 
+    /**
+     * Стоп MockServer
+     */
     @AfterAll
     public static void stopMockServer() {
         if (mockServer != null) {

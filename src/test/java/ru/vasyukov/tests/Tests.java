@@ -7,6 +7,9 @@ import ru.vasyukov.hooks.Hooks;
 import ru.vasyukov.steps.Specification;
 import ru.vasyukov.steps.Steps;
 
+/**
+ * Тестирование RestAssured + MockServer
+ */
 public class Tests extends Hooks {
     @DisplayName("Тестирование Photo123 status 200")
     @ParameterizedTest(name = "{arguments}")
@@ -25,7 +28,7 @@ public class Tests extends Hooks {
         Steps.requestMock(endpoint, Specification.responseSpecPhoto456(statusCode, statusLine));
     }
 
-    @DisplayName("Тестирование IdParams '123','456' status 200, 201")
+    @DisplayName("Тестирование IdParams '123','456','9999' status 200,201,400")
     @ParameterizedTest(name = "{arguments}")
     @MethodSource("ru.vasyukov.tests.DataProvider#providerIdParams")
     public void testIdParams(String endpoint,

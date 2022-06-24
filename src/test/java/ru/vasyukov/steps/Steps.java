@@ -114,6 +114,11 @@ public class Steps {
                                 "#end"));
     }
 
+    /**
+     * Чтение файла, аттач в аллюр
+     * @param filename имя файла
+     * @return файл в byte[]
+     */
     @Attachment(value = "body '{filename}'", type = "application/json")
     public static byte[] attachFile(String filename) {
         try {

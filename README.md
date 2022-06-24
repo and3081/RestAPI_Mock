@@ -7,5 +7,5 @@ mvn clean test
 mvn allure:serve
 
 # <h2>настройки в проперти</h2>
-mock.properties - url
+mock.properties - url, ip, port, logging
 

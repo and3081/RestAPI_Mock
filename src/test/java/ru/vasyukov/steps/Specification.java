@@ -14,8 +14,7 @@ import static ru.vasyukov.steps.MyListener.myListener;
  */
 public class Specification {
     /**
-     * Спецификация запроса: базовый URI, тип контента
-     *
+     * Спецификация запроса: базовый URI, тип контента, листенер для аллюра
      * @return объект спецификации
      */
     public static RequestSpecification requestSpec() {
@@ -26,6 +25,13 @@ public class Specification {
                 .build();
     }
 
+    /**
+     * Спецификация ответа: код статуса и проверки body
+     * @param statusCode код статуса
+     * @param length     длина массива images
+     * @param itemName   значение в массиве
+     * @return объект спецификации
+     */
     public static ResponseSpecification responseSpecPhoto123(int statusCode, int length, String itemName) {
         return new ResponseSpecBuilder()
                 .expectStatusCode(statusCode)
@@ -37,6 +43,12 @@ public class Specification {
                 .build();
     }
 
+    /**
+     * Спецификация ответа: код статуса и проверки body
+     * @param statusCode код статуса
+     * @param statusLine фрагмент строки статуса
+     * @return объект спецификации
+     */
     public static ResponseSpecification responseSpecPhoto456(int statusCode, String statusLine) {
         return new ResponseSpecBuilder()
                 .expectStatusCode(statusCode)
@@ -44,6 +56,12 @@ public class Specification {
                 .build();
     }
 
+    /**
+     * Спецификация ответа: код статуса и проверки body
+     * @param statusCode код статуса
+     * @param id         значение ID
+     * @return объект спецификации
+     */
     public static ResponseSpecification responseSpecIdParams(int statusCode, String id) {
         return new ResponseSpecBuilder()
                 .expectStatusCode(statusCode)
@@ -52,6 +70,12 @@ public class Specification {
                 .build();
     }
 
+    /**
+     * Спецификация ответа: код статуса и проверки body
+     * @param statusCode код статуса
+     * @param id         значение WrongID
+     * @return объект спецификации
+     */
     public static ResponseSpecification responseSpecIdParamsWrong(int statusCode, String id) {
         return new ResponseSpecBuilder()
                 .expectStatusCode(statusCode)
