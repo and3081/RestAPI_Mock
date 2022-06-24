@@ -8,15 +8,14 @@ import ru.vasyukov.steps.Specification;
 import ru.vasyukov.steps.Steps;
 
 public class Tests extends Hooks {
-    @DisplayName("Тестирование Photo123 status 200")
-    @ParameterizedTest(name = "{arguments}")
-    @MethodSource("ru.vasyukov.tests.DataProvider#providerPhoto123")
-    public void testPhoto123(String filename, String endpoint,
-                             int statusCode, int length, String itemName) {
-        Steps.initMockPhoto123(filename, endpoint, statusCode);
+//    @DisplayName("Тестирование Photo123 status 200")
+//    @ParameterizedTest(name = "{arguments}")
+//    @MethodSource("ru.vasyukov.tests.DataProvider#providerPhoto123")
+//    public void testPhoto123(String filename, String endpoint,
+//                             int statusCode, int length, String itemName) {
+//        Steps.initMockPhoto123(filename, endpoint, statusCode);
 //        Steps.requestMock(endpoint, Specification.responseSpecPhoto123(statusCode, length, itemName));
-        Steps.requestMock("/api/core/cats/get-by-id?id=1", Specification.responseSpecPhoto(statusCode));
-    }
+//    }
 
 //    @DisplayName("Тестирование Photo456 status 400")
 //    @ParameterizedTest(name = "{arguments}")
@@ -25,4 +24,13 @@ public class Tests extends Hooks {
 //        Steps.initMockPhoto456(endpoint, statusCode, statusLine);
 //        Steps.requestMock(endpoint, Specification.responseSpecPhoto456(statusCode, statusLine));
 //    }
+
+    @DisplayName("Тестирование IdParams status 200")
+    @ParameterizedTest(name = "{arguments}")
+    @MethodSource("ru.vasyukov.tests.DataProvider#providerIdParams")
+    public void testIdParams(String endpoint, String id1, String id2, int statusCode1, int statusCode2) {
+        Steps.initMockIdParams(endpoint, statusCode1, statusCode2);
+        Steps.requestMock(endpoint + "?id=" + id1, Specification.responseSpecPhoto(statusCode1));
+        Steps.requestMock(endpoint + "?id=" + id2, Specification.responseSpecPhoto(statusCode2));
+    }
 }

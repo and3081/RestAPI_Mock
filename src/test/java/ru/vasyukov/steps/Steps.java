@@ -40,36 +40,6 @@ public class Steps {
                         .withHeader("Content-Type", "application/json")
                         .withBody(json(new String(Objects.requireNonNull(attachFile(filename))),
                                 MediaType.APPLICATION_JSON_UTF_8)));
-
-        new MockServerClient(TestData.mock.ipServer(),
-                Integer.parseInt(TestData.mock.portServer()))
-                .when(request()
-                                .withMethod("GET")
-                                .withPath("/api/core/cats/get-by-id")
-                                .withQueryStringParameters(
-                                        param("id", "[0-9]+")),
-                        Times.unlimited(),
-                        TimeToLive.unlimited(),
-                        1)
-                .respond(template(HttpTemplate.TemplateType.VELOCITY,
-                        "#if($request.queryStringParameters['id'] == ['1'])\n" +
-                                "    {\n" +
-                                "        'statusCode': 200,\n" +
-                                "        'body': \"{'name': 'value'}\"\n" +
-                                "    }\n" +
-                                "#else\n" +
-                                "    {\n" +
-                                "        'statusCode': 200,\n" +
-                                "        'body': \"$!request.queryStringParameters['id']\"\n" +
-                                "    }\n" +
-                                "#end"));
-
-//                        response()
-//                        .withStatusCode(statusCode)
-//                        .withHeader("Content-Type", "application/json")
-//                        .withBody(
-//                                "#if($request.method == 'GET') { --- }" +
-//                                        "#else { === }"));
     }
 
     @Step("Request Mock {request}")
@@ -83,7 +53,7 @@ public class Steps {
                 .spec(checkResponse);
     }
 
-    @Step("Init Mock Photo456 {filename}")
+    @Step("Init Mock Photo456")
     public static void initMockPhoto456(String endpoint, int statusCode, String statusLine) {
         new MockServerClient(TestData.mock.ipServer(),
                 Integer.parseInt(TestData.mock.portServer()))
@@ -99,6 +69,38 @@ public class Steps {
                         .withReasonPhrase(statusLine));
     }
 
+    @Step("Init Mock IdParams: {statusCode1}, {statusCode2}")
+    public static void initMockIdParams(String endpoint, int statusCode1, int statusCode2) {
+        new MockServerClient(TestData.mock.ipServer(),
+                Integer.parseInt(TestData.mock.portServer()))
+                .when(request()
+                                .withMethod("GET")
+                                .withPath(endpoint)
+                                .withQueryStringParameters(
+                                        param("id", "[0-9]+")),
+                        Times.unlimited(),
+                        TimeToLive.unlimited(),
+                        1)
+                .respond(template(HttpTemplate.TemplateType.VELOCITY,
+                        "#if($request.queryStringParameters['id'][0] == '123')\n" +
+                                "    {\n" +
+                                "        'statusCode': " + statusCode1 + ",\n" +
+                                "        'body': \"{'ID': $request.queryStringParameters['id'][0]}\"\n" +
+                                "    }\n" +
+                                "#else\n" +
+                                "    {\n" +
+                                "        'statusCode': " + statusCode2 + ",\n" +
+                                "        'body': \"$!request.queryStringParameters['id'][0]\"\n" +
+                                "    }\n" +
+                                "#end"));
+
+//                        response()
+//                        .withStatusCode(statusCode)
+//                        .withHeader("Content-Type", "application/json")
+//                        .withBody(
+//                                "#if($request.method == 'GET') { --- }" +
+//                                        "#else { === }"));
+    }
 
     @Attachment(value = "body '{filename}'", type = "application/json")
     public static byte[] attachFile(String filename) {

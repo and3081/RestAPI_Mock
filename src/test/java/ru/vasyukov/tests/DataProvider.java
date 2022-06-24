@@ -25,4 +25,9 @@ public class DataProvider {
         return Stream.of(arguments("/api/photos/cats/456/photos",
                 400, "Wrong request"));
     }
+
+    protected static Stream<Arguments> providerIdParams() {
+        return Stream.of(arguments("/api/core/cats/get-by-id",
+                "123", "456", 200, 201));
+    }
 }
