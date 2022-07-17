@@ -17,7 +17,7 @@ mvn allure:serve
 параметризация тестов
 
 ## настройки в проперти:
-* mock.properties - настройки url, ip, port, logging
+* mock.properties - настройки для MockServer url, ip, port, logging
 
 ## тест-кейсы:
 ### ТК1
