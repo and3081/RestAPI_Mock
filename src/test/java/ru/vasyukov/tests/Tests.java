@@ -10,6 +10,9 @@ import ru.vasyukov.steps.Steps;
 
 /**
  * Тестирование RestAssured + MockServer
+ * Класс тест-кейсов
+ * @author Васюков А.Ю.  GitHub  https://github.com/and3081/RestAPI_Mock
+ * @version 1.0
  */
 public class Tests extends Hooks {
     @DisplayName("Тестирование Photo123 status 200")
